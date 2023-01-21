@@ -25,17 +25,23 @@ public class Main {
                 while (true) {
                     System.out.println("Please enter the course name: ");
                     String courseName = scanner.nextLine();
-                    System.out.println("Please enter the mark for " + courseName + ":");
-                    int mark = scanner.nextInt();
-                    scanner.nextLine();
+                    int mark;
+                    do {
+                        System.out.println("Please enter the mark for " + courseName + ":");
+                        mark = scanner.nextInt();
+                        scanner.nextLine();
+                        if (mark < 0 || mark > 100) {
+                            System.out.println("Invalid mark. Please enter a mark between 0 and 100.");
+                        }
+                    } while (mark < 0 || mark > 100);
                     courses.add(new Course(courseName, mark));
-
                     System.out.println("Do you want to add another course? (yes/no)");
                     String response = scanner.nextLine();
                     if (response.equalsIgnoreCase("no")) {
                         break;
                     }
                 }
+
                 students.add(new Student(studentName, studentId, courses));
                 System.out.println("Do you want to add another student? (yes/no)");
                 String response = scanner.nextLine();
